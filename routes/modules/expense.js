@@ -7,15 +7,15 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const name = res.body.name
-  const date = res.body.date
-  const category = res.body.category
-  const amount = res.body.amount
+  const name = req.body.inputName
+  const date = req.body.inputDate
+  const category = req.body.inputCategory
+  const amount = req.body.inputAmount
 
   return Expense.create({
     name, date, category, amount
   })
-    .then(() => res.render('/'))
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
