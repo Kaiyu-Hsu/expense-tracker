@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 })
 
 // update
-router.get('/edit', (req, res) => {
+router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   const name = req.body.inputName
   const date = req.body.inputDate
@@ -30,13 +30,13 @@ router.get('/edit', (req, res) => {
 
   return Expense.findById(id)
     .then( expense => {
-      expense.name = name
-      expense.date = date
-      expense.category = category
-      expense.amount = amount
+      // expense.name = name
+      // expense.date = date
+      // expense.category = category
+      // expense.amount = amount
       return expense.save()
     })
-    .then(() => res.redirect('/'))
+    .then((expenses) => res.render('edit', {expenses}))
     .catch(error => console.log(error))
 })
 
