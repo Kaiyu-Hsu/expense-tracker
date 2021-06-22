@@ -2,29 +2,25 @@ const Category = require('../category')
 const db = require('../../config/mongoose')
 
 db.once('open', () => {
-  Category.create({
-    category_id: 0,
-    icon: 'fa-home',
-    name: '家居物業'
+  Category.create(
+    {
+      icon: '<i class="fas fa-home"></i>',
+      name: '家居物業'
     },
     {
-      category_id: 1,
-      icon: 'fa-shuttle-van',
+      icon: '<i class="fas fa-shuttle-van"></i>',
       name: '交通出行'
     },
     {
-      category_id: 2,
-      icon: 'fa-grin-beam',
+      icon: '<i class="fas fa-grin-beam"></i>',
       name: '休閒娛樂'
     },
     {
-      category_id: 3,
-      icon: 'fa-utensils',
+      icon: '<i class="fas fa-utensils"></i>',
       name: '餐飲食品'
     },
     {
-      category_id: 4,
-      icon: 'fas fa-pen',
+      icon: '<i class="fas fa-pen"></i>',
       name: '其他'
     }
   )
