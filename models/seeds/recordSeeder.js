@@ -27,5 +27,5 @@ db.once('open', () => {
     amount: 260
   })
 
-  console.log('Done!')
+  console.log('Record Done!')
 })
