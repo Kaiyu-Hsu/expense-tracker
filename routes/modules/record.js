@@ -27,20 +27,33 @@ router.post('/', (req, res) => {
 // update
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
-  const name = req.body.inputName
-  const date = req.body.inputDate
-  const category = req.body.inputCategory
-  const amount = req.body.inputAmount
+
+  return Category.find()
+    .lean()
+    .then(categories => 
+      Record.findById(id)
+        .lean()
+        .then( record => res.render('edit', { categories, record }))
+    )
+    .catch(error => console.log(error))
+})
+
+router.put('/:id', (req,res) => {
+  const id = req.params.id
+  const name = req.body.name
+  const date = req.body.date
+  const category = req.body.category
+  const amount = req.body.amount
 
   return Record.findById(id)
     .then( record => {
-      // expense.name = name
-      // expense.date = date
-      // expense.category = category
-      // expense.amount = amount
+      record.name = name
+      record.date = date
+      record.category = category
+      record.amount = amount
       return record.save()
     })
-    .then((records) => res.render('edit', { records }))
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
