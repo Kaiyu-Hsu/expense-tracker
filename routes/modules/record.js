@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
+const Category = require('../../models/category')
 
 // create
 router.get('/new', (req, res) => {
@@ -29,14 +30,14 @@ router.get('/:id/edit', (req, res) => {
   const amount = req.body.inputAmount
 
   return Record.findById(id)
-    .then( expense => {
+    .then( record => {
       // expense.name = name
       // expense.date = date
       // expense.category = category
       // expense.amount = amount
-      return expense.save()
+      return record.save()
     })
-    .then((expenses) => res.render('edit', {expenses}))
+    .then((records) => res.render('edit', { records }))
     .catch(error => console.log(error))
 })
 

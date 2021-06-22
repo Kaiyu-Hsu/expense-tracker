@@ -1,11 +1,29 @@
 const express = require('express')
 const router = express.Router()
-const Expense = require('../../models/record')
+const Record = require('../../models/record')
+const Category = require('../../models/category')
+
 
 router.get('/', (req, res) => {
-  Expense.find()
+  Record.find()
     .lean()
-    .then(expenses => res.render('index', { expenses }))
+    .then(records => {
+      Category.find()
+        .lean()
+        .then(categories => {
+          records.forEach( record => {
+            categories.forEach( category => {
+
+              if (record.category === category.name) {
+                record.category = category.icon
+              }
+
+              console.log(record.category)
+            })
+          }) 
+        })
+      res.render('index', { records })
+    })
     .catch(error => console.log(error))
 })
 
