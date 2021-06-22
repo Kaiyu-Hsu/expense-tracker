@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Expense = require('../../models/record')
+const Record = require('../../models/record')
 
 // create
 router.get('/new', (req, res) => {
@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
   const category = req.body.inputCategory
   const amount = req.body.inputAmount
 
-  return Expense.create({
+  return Record.create({
     name, date, category, amount
   })
     .then(() => res.redirect('/'))
@@ -28,7 +28,7 @@ router.get('/:id/edit', (req, res) => {
   const category = req.body.inputCategory
   const amount = req.body.inputAmount
 
-  return Expense.findById(id)
+  return Record.findById(id)
     .then( expense => {
       // expense.name = name
       // expense.date = date
