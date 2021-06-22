@@ -1,17 +1,19 @@
 <div class="container">
   <ul class="list-group">
     {{#each records}}
-    <div class="row">
-      <li class="list-group-item">
+
+    <li class="list-group-item">
+      <div class="row">
         {{{this.category}}}
-        {{this.name}}
-        {{this.date}}
-        {{this.amount}}
-      </li>
-    </div>
-    <div class="d-inline-flex">
-      <a class="btn btn-primary" href="/record/{{ this._id }}/edit" role="button">修改</a>
-    </div>
+        <h4>{{ this.name }}</h4>
+        <h4>{{this.date}}</h4>
+        <h4>金額:{{this.amount}}</h4>
+        <div class="col-auto ">
+          <a class="btn btn-primary" href="/record/{{ this._id }}/edit" role="button">修改</a>
+        </div>
+      </div>
+    </li>
+
     {{/each}}
   </ul>
 

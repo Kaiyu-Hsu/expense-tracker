@@ -18,7 +18,6 @@ router.get('/', (req, res) => {
                 record.category = category.icon
               }
 
-              console.log(record.category)
             })
           }) 
         })
