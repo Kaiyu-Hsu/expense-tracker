@@ -5,14 +5,17 @@ const Category = require('../../models/category')
 
 // create
 router.get('/new', (req, res) => {
-  res.render('new')
+  Category.find()
+    .lean()
+    .then(categories => res.render('new', { categories }))
+    .catch(error => console.log(error))
 })
 
 router.post('/', (req, res) => {
-  const name = req.body.inputName
-  const date = req.body.inputDate
-  const category = req.body.inputCategory
-  const amount = req.body.inputAmount
+  const name = req.body.name
+  const date = req.body.date
+  const category = req.body.category
+  const amount = req.body.amount
 
   return Record.create({
     name, date, category, amount
