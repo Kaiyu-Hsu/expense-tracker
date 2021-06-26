@@ -5,6 +5,7 @@
     <label for="category">類別</label>
     <select name="filterCategory" id="filterCategory" onchange="form.submit()">
       <option disabled selected value="">請下拉</option>
+
       {{#each categories}}
       <option name="{{ this.name }}" value="{{ this.name }}">{{ this.name }}</option>
       {{/each}}

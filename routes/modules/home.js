@@ -45,20 +45,23 @@ router.post('/filter', (req, res) => {
   let totalAmount = 0
   let noRecord = false
 
-  return Record.find().lean()
+  return Record.find()
+    .lean()
     .then( records => {
-      Category.find().lean()
+      Category.find()
+        .lean()
         .then( categories => {
           records.forEach( record => {
-            filterRecords = records.filter( record => {
-              record.category === category
-            })
+            if(record.category === category ) { 
+              filterRecords.push(record) 
+            }
+             
             filterRecords.forEach( filterRecord => {
               totalAmount += filterRecord.amount
-
+              
               categories.forEach(category => {
                 if (filterRecord.category === category.name) {
-                  filterRecord.category = category.icon
+                  filterRecord.category = category.icon  
                 }
               })
             })
@@ -68,7 +71,7 @@ router.post('/filter', (req, res) => {
             }
             
           })
-          console.log(filterRecords, totalAmount )
+          
           res.render('index', { records: filterRecords, categories, totalAmount, category, noRecord })
     })
     .catch(error => console.log(error))
