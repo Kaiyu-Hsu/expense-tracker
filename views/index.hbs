@@ -20,6 +20,29 @@
   <h5>NTD&nbsp;{{totalAmount}}</h5>
 </div>
 
+{{!-- 無清單跳出視窗 --}}
+{{#if records.noRecord}}
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">提醒</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>目前沒有支出紀錄</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+{{!-- 清單 --}}
 <div class="container">
   <ul class="list-group">
     {{#each records}}
@@ -43,6 +66,7 @@
   </ul>
   </div>
 
+{{!-- 底層選項 --}}
 <div class="container row my-5 ">
   <div>
     <a class="btn btn-primary" href="/record/new" role="button">新增支出</a>
