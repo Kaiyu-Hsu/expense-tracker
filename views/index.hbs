@@ -1,3 +1,24 @@
+{{!-- 類別下拉 --}}
+<div class="container">
+  <div>
+    <form action="/filter" method="POST">
+    <label for="category">類別</label>
+    <select name="filterCategory" id="filterCategory" onchange="form.submit()">
+      <option disabled selected value="">請下拉</option>
+      {{#each categories}}
+      <option name="{{ this.name }}" value="{{ this.name }}">{{ this.name }}</option>
+      {{/each}}
+    </select>
+    </form>
+  </div>
+</div>
+
+{{!-- 顯示總金額 --}}
+<div class="container row">
+  <div>總金額:&nbsp;</div>
+  <h5>NTD&nbsp;{{totalAmount}}</h5>
+</div>
+
 <div class="container">
   <ul class="list-group">
     {{#each records}}
@@ -19,6 +40,13 @@
 
     {{/each}}
   </ul>
+  </div>
 
-  <a class="btn btn-primary" href="/record/new" role="button">新增支出</a>
+<div class="container row my-5 ">
+  <div>
+    <a class="btn btn-primary" href="/record/new" role="button">新增支出</a>
+  </div>
+  <div class="ml-2">
+    <a class="btn btn-primary" href="/" role="button">全部清單</a>
+  </div>
 </div>
