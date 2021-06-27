@@ -1,5 +1,5 @@
 {{!-- 類別下拉 --}}
-<div class="container">
+<div class="container d-flex justify-content-center">
   <div>
     <form action="/filter" method="POST">
     <label for="category">類別</label>
@@ -15,9 +15,9 @@
 </div>
 
 {{!-- 顯示總金額 --}}
-<div class="container row">
+<div class="container row d-flex justify-content-center">
   <div>總金額:&nbsp;</div>
-  <h5>NTD&nbsp;{{totalAmount}}</h5>
+  <h3>NTD&nbsp;{{totalAmount}}</h3>
 </div>
 
 {{!-- 無清單跳出視窗 --}}
@@ -44,30 +44,33 @@
 
 {{!-- 清單 --}}
 <div class="container">
-  <ul class="list-group">
-    {{#each records}}
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">類別</th>
+        <th scope="col">名稱</th>
+        <th scope="col">日期</th>
+        <th scope="col">花費</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      {{#each records}}
+      <tr>
+        <th scope="row">{{{this.category}}}</th>
+        <td>{{ this.name }}</td>
+        <td>{{this.date}}</td>
+        <td>{{this.amount}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
 
-    <li class="list-group-item">
-      <div class="row">
-        {{{this.category}}}
-        <h4>{{ this.name }}</h4>
-        <h4>{{this.date}}</h4>
-        <h4>金額:{{this.amount}}</h4>
-        <div class="col-auto ">
-          <a class="btn btn-primary" href="/record/{{ this._id }}/edit" role="button">修改</a>
-          <form action="/record/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-            <button class="btn btn-outline-danger" type="submit">刪除</button>
-          </form>
-        </div>
-      </div>
-    </li>
-
-    {{/each}}
-  </ul>
+  </table>
   </div>
 
 {{!-- 底層選項 --}}
-<div class="container row my-5 ">
+<div class="container row my-5 d-flex justify-content-center">
   <div>
     <a class="btn btn-primary" href="/record/new" role="button">新增支出</a>
   </div>
