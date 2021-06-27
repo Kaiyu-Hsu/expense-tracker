@@ -24,6 +24,11 @@ db.once('open', () => {
       name: '其他'
     }
   )
-
-  console.log('Category Done!')
+    .then(() => {
+      console.log('Insert categories done!')
+      return db.close()
+    })
+    .then(() => {
+      console.log('Database connection close.')
+    })
 })
