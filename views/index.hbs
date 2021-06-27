@@ -52,6 +52,7 @@
         <th scope="col">名稱</th>
         <th scope="col">日期</th>
         <th scope="col">花費</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     
@@ -62,6 +63,15 @@
         <td>{{ this.name }}</td>
         <td>{{this.date}}</td>
         <td>{{this.amount}}</td>
+        <td>
+          <div class="container row ">
+            <a class="btn btn-outline-primary" href="/record/{{this._id}}/edit" role="button">修改</a>
+            <form action="/record/{{this._id}}?_method=DELETE" method="POST" >
+              <button class="btn btn-outline-danger ml-2" type="submit">刪除</button>
+            </form>
+          </div>
+           
+        </td>
       </tr>
       {{/each}}
     </tbody>
@@ -72,7 +82,7 @@
 {{!-- 底層選項 --}}
 <div class="container row my-5 d-flex justify-content-center">
   <div>
-    <a class="btn btn-primary" href="/record/new" role="button">新增支出</a>
+    <a class="btn btn-success" href="/record/new" role="button">新增支出</a>
   </div>
   <div class="ml-2">
     <a class="btn btn-primary" href="/" role="button">全部清單</a>
